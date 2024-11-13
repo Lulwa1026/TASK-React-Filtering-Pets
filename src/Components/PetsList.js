@@ -4,10 +4,16 @@ import PetItem from "./PetItem";
 
 function PetsList() {
   const [query, setQuery] = useState("");
-  const [type, setType] = useState("")
-  const filterName = pets.filter((pet) => pet.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
-  const filterType = filterName.filter((pets) => pets.type.includes(type))
-  const petList = filterType.map((pet) => <PetItem pet={pet} key={pet.id} />);
+  const [type, setType] = useState("");
+  const [obtainable, setObtainable] = useState(pets);
+  const handleAdopt = (petId) => {
+    const filterPets = obtainable.filter((pet) => pet.id !== petId);
+    setObtainable(filterPets);
+  };
+  const filterName = obtainable.filter((pet) => pet.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+  const filterType = filterName.filter((pets) => pets.type.includes(type));
+  const petList = filterType.map((pet) => <PetItem adopt = {handleAdopt} pet={pet} key={pet.id} />);
+  
   
 
   return (
