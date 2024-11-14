@@ -7,6 +7,7 @@ function PetsList() {
   const [type, setType] = useState("");
   const [obtainable, setObtainable] = useState(pets);
   const handleAdopt = (petId) => {
+    alert("continue");
     const filterPets = obtainable.filter((pet) => pet.id !== petId);
     setObtainable(filterPets);
   };
